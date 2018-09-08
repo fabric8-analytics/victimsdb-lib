@@ -129,9 +129,9 @@ class VersionRange(object):
     """Representation of a version range."""
 
     def __init__(self, version_str):
-        # https://github.com/victims/victims-cve-db#version-string-common
         self._version_str = version_str.strip()
 
+        # https://github.com/victims/victims-cve-db#version-string-common
         result = re.fullmatch(r'^[><=]{1}=[^, ]+(,[^, ]+)?$', version_str.strip())
         if result is None:
             raise ParseError('Invalid version string: {vs}'.format(vs=version_str))
