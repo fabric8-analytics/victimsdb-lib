@@ -95,7 +95,8 @@ class VictimsDB(object):
     def from_git_url(cls, git_url):
         """Build database from GIT URL."""
         with tempfile.TemporaryDirectory() as temp_dir:
-            subprocess.check_call(['git', 'clone', '--single-branch', git_url, temp_dir])
+            cmd = ['git', 'clone', '--single-branch', '--depth=1', git_url, temp_dir]
+            subprocess.check_call(cmd)
             db_dir = os.path.join(temp_dir, 'database')
             return cls.from_dir(db_dir=db_dir)
 
