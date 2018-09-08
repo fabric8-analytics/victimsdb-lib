@@ -18,7 +18,7 @@ class Record(object):
         self.cve_id = cve_id
         self.title = title or ''
         self.description = description or ''
-        self.cvss_v2 = cvss_v2 or None
+        self.cvss_v2 = cvss_v2 or ''
         self.references = references or []
         self.affected = affected
 
