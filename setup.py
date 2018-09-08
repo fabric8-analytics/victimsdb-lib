@@ -12,7 +12,7 @@ def get_requirements():
         for line in lines:
             if line.startswith('git+'):
                 links.append(line)
-            else:
+            elif line:
                 requires.append(line)
         return requires, links
 
