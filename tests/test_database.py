@@ -124,3 +124,11 @@ def test_merge_dont_keep_ours(db_small_path, db_python_only):
     assert len(db1) == 4
     cve = db1['CVE-2016-10516']
     assert not cve.affects('werkzeug', version='0.11.10')
+
+
+def test_read_yamls_from_git_url(git_url):
+    db = VictimsDB.from_git_url(git_url)
+    assert db
+    cves = db.cves_for('werkzeug')
+    assert len(cves) == 1
+    assert cves[0].cve_id == 'CVE-2016-10516'

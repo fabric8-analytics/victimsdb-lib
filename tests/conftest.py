@@ -41,3 +41,9 @@ def python_record_path():
 def invalid_record_path():
     """Path to the invalid CVE record."""
     return os.path.join(_here, 'fixtures/records/invalid.yaml')
+
+
+@pytest.fixture
+def git_url():
+    """GIT URL with YAML data."""
+    return "https://github.com/tisnik/victimsdb-sample-data.git"
