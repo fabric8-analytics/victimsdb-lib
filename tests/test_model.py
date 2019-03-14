@@ -124,6 +124,18 @@ def test_invalid_yaml(invalid_record_path):
         Record.from_file(invalid_record_path, 'python')
 
 
+def test_equality(java_record_path, python_record_path):
+    """Test the __eq__ operatator implementation."""
+    record1 = Record.from_file(python_record_path, 'python')
+    record2 = Record.from_file(python_record_path, 'python')
+    record3 = Record.from_file(java_record_path, 'java')
+
+    assert record1 == record2
+    assert record1 != record3
+
+    assert record1 != "foobar"
+
+
 def test_str(python_record_path):
     """Test str()."""
     version_range = VersionRange('==1.2.0')
