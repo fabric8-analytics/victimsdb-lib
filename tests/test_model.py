@@ -71,6 +71,13 @@ def test_affected_whitespace():
     assert affected.affects('my-package')
 
 
+def test_record_unparseable(unparseable_record_path):
+    """Test Record(), for unparseable YAML."""
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        record = Record.from_file(unparseable_record_path, 'java')
+
+
 def test_record_java(java_record_path):
     """Test Record(), for Java."""
     record = Record.from_file(java_record_path, 'java')
