@@ -190,3 +190,31 @@ def test_version_range_repr():
     assert repr(version_range) == '<VersionRange(version_str===1.2.0)>'
 
 
+def test_affected_from_dict_error_handling():
+    """Tests for the Affected().from_dict() class method."""
+    payload1 = {
+            'version': ['<=1.0.0'],
+            'fixedin': ['>=1.0.1'],
+    }
+    payload2 = {
+            'name': 'my-package',
+            'groudId': 'gid',
+            'fixedin': ['>=1.0.1'],
+    }
+    payload3 = {
+            'name': 'my-package',
+            'artifactId': 'aid',
+            'version': ['<=1.0.0'],
+    }
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        assert Affected.from_dict(payload1, ecosystem="python") is not None
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        assert Affected.from_dict(payload2, ecosystem="java") is not None
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        assert Affected.from_dict(payload3, ecosystem="java") is not None
