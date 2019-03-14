@@ -11,11 +11,27 @@ def test_from_dir(db_small_path):
 
 
 def test_basic(db_small_path):
-    """Test VictimsDB.cves_for()."""
+    """Test VictimsDB.cves_for() for known package."""
     db = VictimsDB.from_dir(db_small_path)
     cves = db.cves_for('werkzeug')
     assert len(cves) == 1
     assert cves[0].cve_id == 'CVE-2016-10516'
+
+
+def test_basic_unknown_package(db_small_path):
+    """Test VictimsDB.cves_for() for unknown package."""
+    db = VictimsDB.from_dir(db_small_path)
+    cves = db.cves_for('xyzzy_unknown_package')
+    assert cves is not None
+    assert len(cves) == 0
+
+
+def test_improper_yaml_parsing(db_path_with_improper_files):
+    """Test VictimsDB.cves_for() YAMLs with improper/not parseable files."""
+    db = VictimsDB.from_dir(db_path_with_improper_files)
+    cves = db.cves_for('xyzzy_unknown_package')
+    assert cves is not None
+    assert len(cves) == 0
 
 
 def test_java_vulnerabilities(db_small_path):
@@ -83,6 +99,7 @@ def test_contains(db_small_path):
     db = VictimsDB.from_dir(db_small_path)
     assert 'CVE-2018-10237' in db
     assert 'CVE-0000-0000' not in db
+    assert None not in db
 
 
 def test_merge(db_small_path, db_python_only):
@@ -107,3 +124,12 @@ def test_merge_dont_keep_ours(db_small_path, db_python_only):
     assert len(db1) == 4
     cve = db1['CVE-2016-10516']
     assert not cve.affects('werkzeug', version='0.11.10')
+
+
+def test_read_yamls_from_git_url(git_url):
+    """Test VictimsDB().from_git_url()."""
+    db = VictimsDB.from_git_url(git_url)
+    assert db
+    cves = db.cves_for('werkzeug')
+    assert len(cves) == 1
+    assert cves[0].cve_id == 'CVE-2016-10516'

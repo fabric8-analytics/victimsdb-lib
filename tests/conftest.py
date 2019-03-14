@@ -14,6 +14,12 @@ def db_small_path():
 
 
 @pytest.fixture
+def db_path_with_improper_files():
+    """Path to the test database with improper files."""
+    return os.path.join(_here, 'fixtures/databases/db-improper/database')
+
+
+@pytest.fixture
 def db_python_only():
     """Path to the python-only test database."""
     return os.path.join(_here, 'fixtures/databases/db-python-only/database')
@@ -35,3 +41,9 @@ def python_record_path():
 def invalid_record_path():
     """Path to the invalid CVE record."""
     return os.path.join(_here, 'fixtures/records/invalid.yaml')
+
+
+@pytest.fixture
+def git_url():
+    """GIT URL with YAML data."""
+    return "https://github.com/tisnik/victimsdb-sample-data.git"
