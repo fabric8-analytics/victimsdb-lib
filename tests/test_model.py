@@ -167,3 +167,26 @@ def test_str(python_record_path):
 
     record = Record.from_file(python_record_path, 'python')
     assert str(record) == 'CVE-2016-10516'
+
+
+def test_record_repr(python_record_path):
+    """Test repr() for the Record class."""
+    record = Record.from_file(python_record_path, 'python')
+    assert record is not None
+    assert repr(record) == '<Record(cve_id=CVE-2016-10516)>'
+
+
+def test_affected_repr():
+    """Test repr() for the Affected class."""
+    affected = Affected.from_dict(
+        {'name': 'my-package', 'version': [], 'fixedin': []}, ecosystem='python'
+    )
+    assert repr(affected) == '<Affected(name=my-package)>'
+
+
+def test_version_range_repr():
+    """Test repr() for the Affected class."""
+    version_range = VersionRange('==1.2.0')
+    assert repr(version_range) == '<VersionRange(version_str===1.2.0)>'
+
+
