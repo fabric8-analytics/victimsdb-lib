@@ -30,7 +30,11 @@ function prepare_venv() {
 
 $(which pip3) install pytest
 $(which pip3) install pytest-cov
+$(which pip3) install codecov
 
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=`pwd` python3 "$(which pytest)" --cov=victimsdb_lib/ --cov-report term-missing --cov-fail-under=$COVERAGE_THRESHOLD -vv tests/
+
 printf "%stests passed%s\n\n" "${GREEN}" "${NORMAL}"
+
+codecov --token=0c52dc5d-f4a6-438a-8683-fc430f10d434
 
