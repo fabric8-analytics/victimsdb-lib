@@ -32,7 +32,7 @@ $(which pip3) install pytest
 $(which pip3) install pytest-cov
 $(which pip3) install codecov
 
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=`pwd` python3 "$(which pytest)" --cov=victimsdb_lib/ --cov-report term-missing --cov-fail-under=$COVERAGE_THRESHOLD -vv tests/
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=`pwd` python3 "$(which pytest)" --cov=victimsdb_lib/ --cov-report term-missing --cov-fail-under=$COVERAGE_THRESHOLD -vv -s tests/
 
 printf "%stests passed%s\n\n" "${GREEN}" "${NORMAL}"
 
