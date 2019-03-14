@@ -11,11 +11,19 @@ def test_from_dir(db_small_path):
 
 
 def test_basic(db_small_path):
-    """Test VictimsDB.cves_for()."""
+    """Test VictimsDB.cves_for() for known package."""
     db = VictimsDB.from_dir(db_small_path)
     cves = db.cves_for('werkzeug')
     assert len(cves) == 1
     assert cves[0].cve_id == 'CVE-2016-10516'
+
+
+def test_basic_unknown_package(db_small_path):
+    """Test VictimsDB.cves_for() for unknown package."""
+    db = VictimsDB.from_dir(db_small_path)
+    cves = db.cves_for('xyzzy_unknown_package')
+    assert cves is not None
+    assert len(cves) == 0
 
 
 def test_java_vulnerabilities(db_small_path):
