@@ -127,6 +127,7 @@ def test_merge_dont_keep_ours(db_small_path, db_python_only):
 
 
 def test_read_yamls_from_git_url(git_url):
+    """Test VictimsDB().from_git_url()."""
     db = VictimsDB.from_git_url(git_url)
     assert db
     cves = db.cves_for('werkzeug')
