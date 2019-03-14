@@ -14,6 +14,12 @@ def db_small_path():
 
 
 @pytest.fixture
+def db_path_with_improper_files():
+    """Path to the test database with improper files."""
+    return os.path.join(_here, 'fixtures/databases/db-improper/database')
+
+
+@pytest.fixture
 def db_python_only():
     """Path to the python-only test database."""
     return os.path.join(_here, 'fixtures/databases/db-python-only/database')

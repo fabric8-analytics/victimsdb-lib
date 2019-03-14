@@ -26,6 +26,14 @@ def test_basic_unknown_package(db_small_path):
     assert len(cves) == 0
 
 
+def test_improper_yaml_parsing(db_path_with_improper_files):
+    """Test VictimsDB.cves_for() YAMLs with improper/not parseable files."""
+    db = VictimsDB.from_dir(db_path_with_improper_files)
+    cves = db.cves_for('xyzzy_unknown_package')
+    assert cves is not None
+    assert len(cves) == 0
+
+
 def test_java_vulnerabilities(db_small_path):
     """Test VictimsDB.java_vulnerabilities()."""
     db = VictimsDB.from_dir(db_small_path)
