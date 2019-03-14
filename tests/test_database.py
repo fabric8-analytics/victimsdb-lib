@@ -91,6 +91,7 @@ def test_contains(db_small_path):
     db = VictimsDB.from_dir(db_small_path)
     assert 'CVE-2018-10237' in db
     assert 'CVE-0000-0000' not in db
+    assert None not in db
 
 
 def test_merge(db_small_path, db_python_only):
