@@ -25,6 +25,25 @@ def test_version_range_advanced():
     assert '0.9.0' not in version_range
 
 
+def test_version_range_improper_version():
+    """Even more advanced tests for VersionRange()."""
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        version_range = VersionRange('')
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        version_range = VersionRange('<')
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        version_range = VersionRange('<=')
+
+    with pytest.raises(ParseError) as e:
+        assert e is not None
+        version_range = VersionRange('foobar')
+
+
 def test_affected_basic():
     """Basic tests for Affected()."""
     affected = Affected.from_dict(
