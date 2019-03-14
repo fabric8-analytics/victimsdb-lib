@@ -44,6 +44,12 @@ def invalid_record_path():
 
 
 @pytest.fixture
+def unparseable_record_path():
+    """Path to the unparseable CVE record."""
+    return os.path.join(_here, 'fixtures/records/unparseable.yaml')
+
+
+@pytest.fixture
 def git_url():
     """GIT URL with YAML data."""
     return "https://github.com/tisnik/victimsdb-sample-data.git"
