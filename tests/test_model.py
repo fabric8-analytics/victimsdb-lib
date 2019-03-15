@@ -30,18 +30,22 @@ def test_version_range_improper_version():
     with pytest.raises(ParseError) as e:
         assert e is not None
         version_range = VersionRange('')
+        assert version_range is not None
 
     with pytest.raises(ParseError) as e:
         assert e is not None
         version_range = VersionRange('<')
+        assert version_range is not None
 
     with pytest.raises(ParseError) as e:
         assert e is not None
         version_range = VersionRange('<=')
+        assert version_range is not None
 
     with pytest.raises(ParseError) as e:
         assert e is not None
         version_range = VersionRange('foobar')
+        assert version_range is not None
 
 
 def test_affected_basic():
@@ -95,6 +99,7 @@ def test_record_unparseable(unparseable_record_path):
     with pytest.raises(ParseError) as e:
         assert e is not None
         record = Record.from_file(unparseable_record_path, 'java')
+        assert record is not None
 
 
 def test_record_java(java_record_path):
