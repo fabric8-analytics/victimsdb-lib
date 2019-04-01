@@ -127,3 +127,5 @@ pip-selfcheck.json
 
 ### IDEs
 .idea/
+
+.DS_Store
