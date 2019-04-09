@@ -15,7 +15,7 @@ prep() {
     yum -y install git which epel-release python34-virtualenv
     yum -y install python34-devel python34-pip
     yum -y install gcc
-    pip3 install virtualenv
+    pip3.4 install virtualenv
 }
 
 load_jenkins_vars
