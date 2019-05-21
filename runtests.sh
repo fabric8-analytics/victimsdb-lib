@@ -6,6 +6,10 @@ COVERAGE_THRESHOLD=90
 
 echo "Create Virtualenv for Python deps ..."
 
+check_python_version() {
+    python3 tools/check_python_version.py 3 6
+}
+
 function prepare_venv() {
     VIRTUALENV="$(which virtualenv)"
     if [ $? -eq 1 ]
@@ -33,6 +37,8 @@ function prepare_venv() {
 }
 
 [ "$NOVENV" == "1" ] || prepare_venv || exit 1
+
+check_python_version
 
 $(which pip3) install pytest
 $(which pip3) install pytest-cov
