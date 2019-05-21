@@ -1,6 +1,6 @@
 #!/bin/bash
 
-directories="victimsdb_lib tests"
+directories="victimsdb_lib tests tools"
 separate_files="setup.py"
 
 pass=0
