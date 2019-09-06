@@ -14,4 +14,4 @@ check_python_version() {
 
 prep
 check_python_version
-./run-linter.sh
+./qa/run-linter.sh

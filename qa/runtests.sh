@@ -1,5 +1,9 @@
 #!/bin/bash
 
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+pushd "${SCRIPT_DIR}/.." > /dev/null
+
 set -e
 
 COVERAGE_THRESHOLD=90
@@ -50,3 +54,5 @@ printf "%stests passed%s\n\n" "${GREEN}" "${NORMAL}"
 
 codecov --token=0c52dc5d-f4a6-438a-8683-fc430f10d434
 
+
+popd > /dev/null
